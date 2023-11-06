@@ -4,13 +4,14 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-4 py-4">
-            <h4>사이트맵</h4>
+            <h4 class="text-white">사이트맵</h4>
             <ul class="list-unstyled">
               <li>
-                <router-link to="/" class="text-white" >메인 화면</router-link>
+                <router-link to="/" class="text-white">메인 화면</router-link>
               </li>
               <li>
-                <router-link to="/login" class="text-white" v-if="!$store.state.account.id">로그인</router-link> <!-- 로그아웃했을때는 로그인이 보이게-->
+                <router-link to="/login" class="text-white" v-if="!$store.state.account.id">로그인</router-link>
+                <!-- 로그아웃했을때는 로그인이 보이게-->
                 <a to="/login" class="text-white" @click="logout()" v-else>로그아웃</a> <!-- 로그인했을때는 로그아웃이 보이게-->
               </li>
             </ul>
@@ -44,10 +45,11 @@ import router from "@/scripts/router";
 
 export default {
   name: 'Header',
-  setup(){
-    const logout =()=>{
+  setup() {
+    const logout = () => {
       store.commit('setAccount', 0);
-      router.push({path:"/"});
+      sessionStorage.removeItem("id");
+      router.push({path: "/"});
     }
     return {logout};
   }
